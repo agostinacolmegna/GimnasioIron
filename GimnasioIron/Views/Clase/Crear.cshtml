@@ -1,0 +1,40 @@
+﻿@model GimnasioIron.Models.Clase
+
+@{
+    ViewData["Title"] = "Crear Clase";
+}
+
+<h2 class="mb-4">Crear nueva clase</h2>
+
+<form asp-action="Crear" method="post" class="w-50 mx-auto">
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label">Nombre de la clase</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Profesor" class="form-label">Profesor</label>
+        <input asp-for="Profesor" class="form-control" />
+        <span asp-validation-for="Profesor" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaHora" class="form-label">Fecha y hora</label>
+        <input asp-for="FechaHora" type="datetime-local" class="form-control" />
+        <span asp-validation-for="FechaHora" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CupoMaximo" class="form-label">Cupo máximo</label>
+        <input asp-for="CupoMaximo" class="form-control" />
+        <span asp-validation-for="CupoMaximo" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Crear clase</button>
+    <a asp-controller="Usuario" asp-action="PanelAdmin" class="btn btn-secondary ms-2">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

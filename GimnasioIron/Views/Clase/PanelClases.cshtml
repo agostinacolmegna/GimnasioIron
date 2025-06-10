@@ -1,0 +1,43 @@
+﻿@model List<GimnasioIron.Models.Clase>
+
+@{
+    ViewData["Title"] = "Panel de Clases";
+}
+
+<h2>Panel de Clases</h2>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">@TempData["Mensaje"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Profesor</th>
+            <th>Fecha y Hora</th>
+            <th>Cupo Máximo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var clase in Model)
+        {
+            <tr>
+                <td>@clase.Nombre</td>
+                <td>@clase.Profesor</td>
+                <td>@clase.FechaHora.ToString("dddd dd/MM/yyyy HH:mm")</td>
+                <td>@clase.CupoMaximo</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@clase.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="ConfirmarEliminar" asp-route-id="@clase.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

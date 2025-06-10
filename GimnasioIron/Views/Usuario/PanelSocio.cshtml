@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Panel del Socio";
+    var nombre = Context.Session.GetString("Nombre");
+}
+
+<h2 class="mb-4">Bienvenido, @nombre</h2>
+
+
+@if (TempData["CuotaMensaje"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @TempData["CuotaMensaje"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+
+<div class="d-grid gap-2 col-6 mx-auto">
+    <a class="btn btn-outline-primary" asp-controller="Pago" asp-action="MisPagos">Mis Pagos</a>
+    <a class="btn btn-outline-success" asp-controller="Reserva" asp-action="MisReservas">Mis Reservas</a>
+    <form asp-controller="Usuario" asp-action="Logout" method="post">
+        <button type="submit" class="btn btn-outline-danger mt-3">Cerrar sesión</button>
+    </form>
+</div>

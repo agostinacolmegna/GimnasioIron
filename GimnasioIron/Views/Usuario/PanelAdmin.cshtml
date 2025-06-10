@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Panel del Administrador";
+}
+
+@if (TempData["Mensaje"] != null)
+{
+    var tipo = TempData["TipoMensaje"]?.ToString() ?? "info";
+    <div class="alert alert-@tipo alert-dismissible fade show" role="alert">
+        @TempData["Mensaje"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+<h2 class="mb-4 text-center">Panel del Administrador</h2>
+
+<div class="row justify-content-center">
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title">Pagos</h5>
+                <p class="card-text text-muted">Gestioná los pagos de los socios</p>
+                <a href="@Url.Action("VerPagos", "Usuario")" class="btn btn-outline-warning">Ver Pagos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title">Reservas</h5>
+                <p class="card-text text-muted">Visualizá las reservas realizadas por los socios</p>
+                <a href="@Url.Action("VerReservas", "Reserva")" class="btn btn-outline-primary">Ver Reservas</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title">Nueva Clase</h5>
+                <p class="card-text text-muted">Creá nuevas clases para el calendario</p>
+                <a href="@Url.Action("Crear", "Clase")" class="btn btn-outline-success">Crear Clase</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+    <div class="card shadow h-100">
+        <div class="card-body text-center">
+            <h5 class="card-title">Clases creadas</h5>
+            <p class="card-text text-muted">Visualizá, editá o eliminá clases existentes</p>
+            <a href="@Url.Action("PanelClases", "Clase")" class="btn btn-outline-dark">Ver Clases</a>
+        </div>
+    </div>
+</div>
+
+
+</div>

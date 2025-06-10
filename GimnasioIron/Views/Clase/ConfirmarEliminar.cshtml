@@ -1,0 +1,24 @@
+﻿@model GimnasioIron.Models.Clase
+
+@{
+    ViewData["Title"] = "Confirmar eliminación";
+}
+
+<h2>Confirmar eliminación</h2>
+
+<p>¿Estás segura que querés eliminar la siguiente clase?</p>
+
+<div class="border p-3 rounded mb-3">
+    <ul class="list-unstyled">
+        <li><strong>Nombre:</strong> @Model.Nombre</li>
+        <li><strong>Profesor:</strong> @Model.Profesor</li>
+        <li><strong>Fecha y Hora:</strong> @Model.FechaHora.ToString("dddd dd/MM/yyyy HH:mm")</li>
+        <li><strong>Cupo máximo:</strong> @Model.CupoMaximo</li>
+    </ul>
+</div>
+
+<form asp-action="Eliminar" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a asp-action="PanelClases" class="btn btn-secondary ms-2">Cancelar</a>
+</form>

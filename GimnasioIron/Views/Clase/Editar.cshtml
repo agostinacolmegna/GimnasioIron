@@ -1,0 +1,30 @@
+﻿@model GimnasioIron.Models.Clase
+
+<h2>Editar Clase</h2>
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Profesor</label>
+        <input asp-for="Profesor" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Fecha y Hora</label>
+        <input asp-for="FechaHora" class="form-control" type="datetime-local" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Cupo Máximo</label>
+        <input asp-for="CupoMaximo" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a asp-action="PanelClases" class="btn btn-secondary ms-2">Volver</a>
+</form>

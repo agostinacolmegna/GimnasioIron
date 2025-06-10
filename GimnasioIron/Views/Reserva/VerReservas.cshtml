@@ -1,0 +1,74 @@
+﻿@model List<GimnasioIron.Models.Clase>
+
+@{
+    ViewData["Title"] = "Reservas por Clase";
+
+    var clasesPorDia = Model
+        .GroupBy(c => c.FechaHora.Date)
+        .OrderBy(g => g.Key);
+}
+
+<h2 class="mb-4 text-center">Reservas por Clase</h2>
+
+@foreach (var grupo in clasesPorDia)
+{
+    <h4 class="mt-4 mb-3">
+        📅 @grupo.Key.ToString("dddd dd/MM/yyyy")
+    </h4>
+
+    @foreach (var clase in grupo.OrderBy(c => c.FechaHora))
+    {
+        <div class="card mb-3 shadow-sm border-start border-4 border-primary">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title mb-0">📘 @clase.Nombre</h5>
+                    <span class="badge bg-secondary">
+                        @clase.Reservas.Count / @clase.CupoMaximo reservadas
+                    </span>
+                </div>
+
+                <p class="mb-2 text-muted">
+                    👨‍🏫 <strong>Profesor:</strong> @clase.Profesor<br />
+                    ⏰ <strong>Hora:</strong> @clase.FechaHora.ToString("HH:mm")
+                </p>
+
+                @if (clase.Reservas.Any())
+                {
+                    <ul class="list-group">
+                        @foreach (var reserva in clase.Reservas)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                🧍 @reserva.Usuario.Nombre
+                                <span class="text-muted small">@reserva.Usuario.Email</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div class="alert alert-warning mt-3 mb-0">No hay reservas para esta clase.</div>
+                }
+            </div>
+        </div>
+    }
+}
+
+<style>
+    h4 {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .card-title {
+        font-weight: 600;
+    }
+
+    .list-group-item {
+        font-size: 0.95rem;
+    }
+
+    .text-muted small {
+        font-size: 0.8rem;
+    }
+</style>

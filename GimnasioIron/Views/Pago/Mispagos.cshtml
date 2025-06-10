@@ -1,0 +1,61 @@
+﻿@model List<GimnasioIron.Models.Pago>
+@{
+    ViewData["Title"] = "Mis Pagos";
+}
+
+<h2 class="mb-4 text-center">Mis Pagos</h2>
+
+@if (TempData["Mensaje"] != null)
+{
+    var tipo = TempData["TipoMensaje"]?.ToString() ?? "success";
+    <div class="alert alert-@tipo text-center">@TempData["Mensaje"]</div>
+}
+
+@if (!(bool)(ViewBag.CuotaYaPagaEsteMes ?? false))
+{
+    <div class="text-center mb-4">
+        <a class="btn btn-primary" asp-action="Abonar">💰 Abonar cuota mensual</a>
+    </div>
+}
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">Todavía no realizaste ningún pago.</div>
+}
+else
+{
+    foreach (var pago in Model.OrderByDescending(p => p.Fecha))
+    {
+        <div class="card mb-4 shadow-sm border-start border-4
+            @(pago.Estado == EstadoPago.Aprobado ? "border-success" :
+              pago.Estado == EstadoPago.Rechazado ? "border-danger" : "border-warning")">
+            <div class="card-body">
+                <h5 class="card-title">💳 @pago.Metodo</h5>
+                <p class="mb-1 text-muted">📅 @pago.Fecha.ToString("dddd dd/MM/yyyy")</p>
+                <p class="mb-1"><strong>Monto:</strong> $@pago.Monto</p>
+                <p>
+                    <strong>Estado:</strong>
+                    @if (pago.Estado == EstadoPago.Aprobado)
+                    {
+                        <span class="badge bg-success">Aprobado</span>
+                    }
+                    else if (pago.Estado == EstadoPago.Rechazado)
+                    {
+                        <span class="badge bg-danger">Rechazado</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">Pendiente</span>
+                    }
+                </p>
+
+                @if (pago.Estado == EstadoPago.Rechazado && !string.IsNullOrEmpty(pago.MotivoRechazo))
+                {
+                    <div class="alert alert-danger mt-3">
+                        <strong>Motivo del rechazo:</strong> @pago.MotivoRechazo
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
