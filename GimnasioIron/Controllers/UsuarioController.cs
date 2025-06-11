@@ -17,7 +17,7 @@ namespace GimnasioIron.Controllers
             _context = context;
         }
 
-        // ======================= REGISTRO Y LOGIN =======================
+       
 
         [HttpGet]
         public IActionResult Registro()
@@ -103,7 +103,7 @@ namespace GimnasioIron.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // ======================= SOCIO =======================
+      
 
         public IActionResult PanelSocio()
         {
@@ -111,7 +111,6 @@ namespace GimnasioIron.Controllers
         }
 
 
-        // ======================= ADMIN =======================
 
         public IActionResult PanelAdmin(string filtroNombre = "")
         {

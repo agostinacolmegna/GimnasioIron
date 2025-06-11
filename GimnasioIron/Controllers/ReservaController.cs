@@ -16,7 +16,7 @@ namespace GimnasioIron.Controllers
             _context = context;
         }
 
-        // 🟢 Ver reservas del socio
+        
         public IActionResult MisReservas()
         {
             int? usuarioId = HttpContext.Session.GetInt32("UsuarioId");
@@ -31,7 +31,7 @@ namespace GimnasioIron.Controllers
             return View(reservas);
         }
 
-        // 🟢 Ver clases disponibles para reservar
+        
         public IActionResult ReservarClase()
         {
             int? usuarioId = HttpContext.Session.GetInt32("UsuarioId");
@@ -44,7 +44,7 @@ namespace GimnasioIron.Controllers
                 .OrderBy(c => c.FechaHora)
                 .ToList();
 
-            // 🔴 Cargar reservas del usuario para validación diaria
+           
             var reservasDelUsuario = _context.Reservas
                 .Include(r => r.Clase)
                 .Where(r => r.UsuarioId == usuarioId)
@@ -59,7 +59,7 @@ namespace GimnasioIron.Controllers
             return View(clases);
         }
 
-        // 🟢 Confirmar reserva de clase
+      
         [HttpPost]
         public IActionResult ConfirmarReserva(int claseId)
         {
@@ -90,7 +90,7 @@ namespace GimnasioIron.Controllers
                 return RedirectToAction("ReservarClase");
             }
 
-            // 🔴 Validar si ya tiene 2 reservas ese día
+       
             var reservasHoy = _context.Reservas
                 .Include(r => r.Clase)
                 .Where(r => r.UsuarioId == usuarioId && r.Clase.FechaHora.Date == clase.FechaHora.Date)
@@ -115,7 +115,7 @@ namespace GimnasioIron.Controllers
             return RedirectToAction("MisReservas");
         }
 
-        // 🟢 Cancelar reserva
+   
         [HttpPost]
         public IActionResult Cancelar(int id)
         {
@@ -137,7 +137,7 @@ namespace GimnasioIron.Controllers
             return RedirectToAction("MisReservas");
         }
 
-        // 🟢 Ver reservas del administrador
+        
         public IActionResult VerReservas()
         {
             var clasesConReservas = _context.Clases

@@ -16,7 +16,7 @@ namespace GimnasioIron.Controllers
             _context = context;
         }
 
-        // ✅ Muestra los pagos del usuario logueado
+        
         public IActionResult MisPagos()
         {
             int? idUsuario = HttpContext.Session.GetInt32("UsuarioId");
@@ -38,14 +38,14 @@ namespace GimnasioIron.Controllers
             return View(pagos);
         }
 
-        // ✅ Formulario GET para elegir método de pago
+        
         [HttpGet]
         public IActionResult Abonar()
         {
             return View();
         }
 
-        // ✅ POST para registrar el pago
+      
         [HttpPost]
         public IActionResult Abonar(MetodoPago metodo, string? numeroTarjeta, string? cvv)
         {

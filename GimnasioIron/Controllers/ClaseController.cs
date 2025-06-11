@@ -15,21 +15,20 @@ namespace GimnasioIron.Controllers
             _context = context;
         }
 
-        // 🔹 Muestra todas las clases para el admin
+     
         public IActionResult PanelClases()
         {
             var clases = _context.Clases.OrderBy(c => c.FechaHora).ToList();
             return View(clases);
         }
 
-        // 🔹 Muestra el formulario para crear una clase
         [HttpGet]
         public IActionResult Crear()
         {
             return View();
         }
 
-        // 🔹 Procesa la creación de clase
+      
         [HttpPost]
         public IActionResult Crear([Bind("Nombre,Profesor,FechaHora,CupoMaximo")] Clase clase)
         {
@@ -43,7 +42,7 @@ namespace GimnasioIron.Controllers
             return View(clase);
         }
 
-        // 🔹 Muestra el formulario para editar
+       
         public IActionResult Editar(int id)
         {
             var clase = _context.Clases.FirstOrDefault(c => c.Id == id);
@@ -51,7 +50,6 @@ namespace GimnasioIron.Controllers
             return View(clase);
         }
 
-        // 🔹 Guarda la clase editada
         [HttpPost]
         public IActionResult Editar(Clase claseEditada)
         {
@@ -78,7 +76,7 @@ namespace GimnasioIron.Controllers
             return View(clase);
         }
 
-        // 🔹 Elimina la clase solo si no tiene reservas
+      
         [HttpPost]
         public IActionResult Eliminar(int id)
         {
