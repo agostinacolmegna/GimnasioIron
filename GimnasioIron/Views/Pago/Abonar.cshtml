@@ -2,51 +2,107 @@
     ViewData["Title"] = "Abonar Cuota";
 }
 
-<h2 class="mb-4">Elegí un medio de pago</h2>
+<h2 class="text-center fw-bold mb-5 text-primary">Elegí tu membresía y método de pago</h2>
 
 @if (TempData["Mensaje"] != null)
 {
     var tipo = TempData["TipoMensaje"]?.ToString() ?? "success";
-    <div class="alert alert-@tipo">@TempData["Mensaje"]</div>
+    <div class="alert alert-@tipo text-center fw-semibold">@TempData["Mensaje"]</div>
 }
 
-<form asp-action="Abonar" method="post" class="card p-4 shadow-sm" style="max-width: 600px;">
-    <div class="mb-3">
-        <label class="form-label">Medio de pago</label>
-        <div class="form-check">
+<form asp-action="Abonar" method="post" class="container">
+
+    <!-- SELECCIÓN DE MEMBRESÍA -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-4">
+            <label class="w-100 card p-4 shadow-lg membership-option position-relative">
+                <input type="radio" class="btn-check" name="plan" value="Premium" autocomplete="off" checked>
+                <h4 class="text-primary fw-bold mb-3">💎 PREMIUM</h4>
+                <ul class="list-unstyled mb-3">
+                    <li>• Personal trainer incluido</li>
+                    <li>• Descuentos en productos</li>
+                    <li>• Acceso a spa y masajes</li>
+                </ul>
+                <h5 class="fw-bold text-end">$36.000</h5>
+            </label>
+        </div>
+        <div class="col-md-4">
+            <label class="w-100 card p-4 shadow-lg membership-option position-relative">
+                <input type="radio" class="btn-check" name="plan" value="Plata" autocomplete="off">
+                <h4 class="text-secondary fw-bold mb-3">🥈 PLATA</h4>
+                <ul class="list-unstyled mb-3">
+                    <li>• Clases grupales</li>
+                    <li>• Locker individual GENERAL</li>
+                    <li>• Acceso a vestuarios</li>
+                </ul>
+                <h5 class="fw-bold text-end">$30.000</h5>
+            </label>
+        </div>
+        <div class="col-md-4">
+            <label class="w-100 card p-4 shadow-lg membership-option position-relative">
+                <input type="radio" class="btn-check" name="plan" value="Basico" autocomplete="off">
+                <h4 class="text-warning fw-bold mb-3">🥉 BÁSICO</h4>
+                <ul class="list-unstyled mb-3">
+                    <li>• Acceso al gimnasio</li>
+                    <li>• Clases seleccionadas</li>
+                    <li>• Locker individual GENERAL</li>
+                </ul>
+                <h5 class="fw-bold text-end">$25.000</h5>
+            </label>
+        </div>
+    </div>
+
+    <!-- MÉTODO DE PAGO -->
+    <div class="card p-4 bg-light shadow-sm mb-5" style="max-width: 800px; margin: auto;">
+        <h5 class="fw-bold mb-3">💳 Medio de pago</h5>
+
+        <div class="form-check mb-2">
             <input class="form-check-input" type="radio" name="metodo" value="Transferencia" id="transferencia" checked onclick="mostrarCampos(false)">
-            <label class="form-check-label" for="transferencia">Transferencia bancaria -      alias: Iron.gym.bsas</label>
+            <label class="form-check-label" for="transferencia">
+                <i class="fas fa-building-columns me-2 text-primary"></i>
+                Transferencia bancaria — <strong>alias: Iron.gym.bsas</strong>
+            </label>
         </div>
-        <div class="form-check">
+
+        <div class="form-check mb-2">
             <input class="form-check-input" type="radio" name="metodo" value="Tarjeta" id="tarjeta" onclick="mostrarCampos(true)">
-            <label class="form-check-label" for="tarjeta">Tarjeta de crédito o débito</label>
+            <label class="form-check-label" for="tarjeta">
+                <i class="fas fa-credit-card me-2 text-success"></i>
+                Tarjeta de crédito o débito
+            </label>
         </div>
-        <div class="form-check">
+
+        <div class="form-check mb-3">
             <input class="form-check-input" type="radio" name="metodo" value="Efectivo" id="efectivo" onclick="mostrarCampos(false)">
-            <label class="form-check-label" for="efectivo">Efectivo (solo apto para pagos en recepción)</label>
+            <label class="form-check-label" for="efectivo">
+                <i class="fas fa-money-bill-wave me-2 text-warning"></i>
+                Efectivo (en recepción)
+            </label>
+        </div>
+
+        <!-- DATOS DE TARJETA -->
+        <div id="datosTarjeta" style="display:none">
+            <hr />
+            <h6 class="fw-bold mb-3"><i class="fas fa-credit-card-front me-2 text-danger"></i> Datos de tarjeta</h6>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label">Número de tarjeta</label>
+                    <input type="text" name="numeroTarjeta" class="form-control" placeholder="XXXX XXXX XXXX XXXX" />
+                </div>
+                <div class="col">
+                    <label class="form-label">CVV</label>
+                    <input type="text" name="cvv" class="form-control" placeholder="123" />
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="datosTarjeta" style="display:none">
-        <hr />
-        <h5 class="mb-3">Datos de tarjeta</h5>
-        <div class="row mb-3">
-            <div class="col">
-                <label class="form-label">Número de tarjeta</label>
-                <input type="text" name="numeroTarjeta" class="form-control" />
-            </div>
-            <div class="col">
-                <label class="form-label">CVV</label>
-                <input type="text" name="cvv" class="form-control" />
-            </div>
-        </div>
-        <div class="alert alert-secondary">
-            Cuota: <strong>$35.000</strong>
-        </div>
-    </div>
-
-    <div class="mt-4">
-        <button type="submit" class="btn btn-primary w-100">REALIZAR PAGO</button>
+    <!-- BOTÓN -->
+    <div class="text-center mt-4 mb-5">
+        <button type="submit" class="btn btn-dark btn-lg px-5">
+            <i class="fas fa-check-circle me-2"></i> REALIZAR PAGO
+        </button>
     </div>
 </form>
 
@@ -62,3 +118,37 @@
         }
     </script>
 }
+
+<style>
+    /* Estilos para tarjetas seleccionables */
+    .membership-option input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .membership-option {
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        border-radius: 16px;
+    }
+
+        .membership-option input[type="radio"]:checked + h4 {
+            text-decoration: underline;
+        }
+
+        .membership-option input[type="radio"]:checked ~ h5 {
+            color: green;
+        }
+
+        .membership-option input[type="radio"]:checked ~ * {
+            color: black;
+        }
+
+        .membership-option:has(input[type="radio"]:checked) {
+            border: 2px solid #0d6efd;
+            background-color: #e9f3ff;
+        }
+</style>
+
+

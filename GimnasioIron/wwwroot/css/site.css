@@ -1,22 +1,148 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.titulo-servicios {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+/* HERO BANNER */
+.hero-banner {
+    position: relative;
+    background-image: url('/img/IronSlider3.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .hero-banner .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+    .hero-content h1,
+    .hero-content p {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+/* BOTÓN PRINCIPAL */
+.btn-primary {
+    background-color: #e91e63;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+    .btn-primary:hover {
+        background-color: #c2185b;
+    }
+
+
+
+.card-img-top {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card ul li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+
+
+.card {
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f7f7f7 100%);
+    border: none;
+}
+
+    .card:hover {
+        transform: scale(1.03) rotateZ(-0.3deg);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+.card-body {
+    border-left: 5px solid #eee;
+    padding: 1.5rem;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 50rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+i.fa-2x {
+    animation: bounceIn 0.8s ease;
+}
+
+/*  Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform:  scale(1);
+         
+    }
 }

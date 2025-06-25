@@ -1,8 +1,131 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- NUEVO HERO BANNER -->
+<section class="hero-banner">
+    <div class="overlay"></div>
+    <div class="hero-content text-center text-white">
+        <h1 class="display-3 fw-bold">¡Bienvenido a GimnasioIron!</h1>
+        <p class="lead mb-4">Entrená con nosotros. Superá tus límites. Sentite mejor.</p>
+        <a href="/Usuario/Registro" class="btn btn-lg btn-primary px-5 py-3 text-uppercase">Asociate</a>
+    </div>
+</section>
+
+
+
+<!-- Sección con 4 servicios en cards -->
+<section class="container text-center my-5">
+    <h2 class="display-5 fw-bold text-uppercase mb-4">Nuestros Servicios</h2>
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card p-3 h-100 shadow-sm">
+                <img src="/img/yoga.jpeg" class="card-img-top" alt="Yoga">
+                <h4 class="mt-3">YOGA</h4>
+                <p>Coordinación, equilibrio y flexibilidad.</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card p-3 h-100 shadow-sm">
+                <img src="/img/spinning.jpeg" class="card-img-top" alt="Spinning">
+                <h4 class="mt-3">SPINNING</h4>
+                <p>Cardio intenso con ritmo y energía.</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card p-3 h-100 shadow-sm">
+                <img src="/img/funcional2.jpeg" class="card-img-top" alt="Funcional">
+                <h4 class="mt-3">FUNCIONAL</h4>
+                <p>Rutinas dinámicas para todo el cuerpo.</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card p-3 h-100 shadow-sm">
+                <img src="/img/crossfit1.jpeg" class="card-img-top" alt="Crossfit">
+                <h4 class="mt-3">CROSSFIT</h4>
+                <p>Movimientos naturales con alta intensidad.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- SECCIÓN MEMBRESÍAS -->
+<section class="container text-center my-5">
+    <h2 class="display-6 fw-bold text-uppercase mb-4">Membresías</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 shadow-sm h-100">
+                <h3 class="text-primary fw-bold">PREMIUM</h3>
+                <ul class="list-unstyled mt-3 text-start mx-auto" style="max-width: 250px;">
+                    <li>✔ Personal trainer incluido</li>
+                    <li>✔ Descuentos en productos</li>
+                    <li>✔ Acceso a spa y masajes</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 shadow-sm h-100">
+                <h3 class="text-secondary fw-bold">PLATA</h3>
+                <ul class="list-unstyled mt-3 text-start mx-auto" style="max-width: 250px;">
+                     <li>✔ Clases grupales</li>
+                     <li>✔ Locker individual PRIVADO</li>
+                     <li>✔ Acceso a vestuarios</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 shadow-sm h-100">
+                <h3 class="text-muted fw-bold">BÁSICO</h3>
+                <ul class="list-unstyled mt-3 text-start mx-auto" style="max-width: 250px;">
+                    <li>✔ Acceso al gimnasio</li>
+                    <li>✔ Locker individual GENERAL</li>
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="container my-5">
+    <h2 class="text-center display-6 fw-bold mb-4 text-uppercase">¿Dónde estamos?</h2>
+    <div class="ratio ratio-16x9 shadow-sm rounded">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.3883583663765!2d-58.39283202425918!3d-34.61564887295082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacfcc1e14ff%3A0x17dbf0f5adf7bba0!2sAv.%20Rivadavia%201400%2C%20C1085%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1719269566455!5m2!1ses!2sar" 
+            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+<section class="container my-5">
+    <h2 class="text-center display-6 fw-bold mb-4 text-uppercase">Ellos nos eligieron</h2>
+    <div class="row text-center justify-content-center">
+        <div class="col-md-4 mb-4">
+            <div class="card p-3 shadow-sm h-100">
+                <img src="/img/cliente1.jpeg" class="rounded-circle mx-auto mb-3" alt="Cliente 1" width="80" height="80">
+                <h5 class="fw-bold">Macarena Amarilla</h5>
+                <p class="text-warning mb-1">★★★★★</p>
+                <p class="small">“El mejor gimnasio que probé. Profesores atentos y un ambiente increíble.”</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card p-3 shadow-sm h-100">
+                <img src="/img/cliente2.jpeg" class="rounded-circle mx-auto mb-3" alt="Cliente 2" width="80" height="80">
+                <h5 class="fw-bold">Franco Ayala</h5>
+                <p class="text-warning mb-1">★★★★★</p>
+                <p class="small">“Me ayudaron a cambiar mi rutina. ¡Los recomiendo al 100%!”</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card p-3 shadow-sm h-100">
+                <img src="/img/cliente3.jpeg" class="rounded-circle mx-auto mb-3" alt="Cliente 3" width="80" height="80">
+                <h5 class="fw-bold">Agostina Colmegna</h5>
+                <p class="text-warning mb-1">★★★★★</p>
+                <p class="small">“Instalaciones súper completas. Me siento motivada cada día.”</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    

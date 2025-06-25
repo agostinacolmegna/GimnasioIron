@@ -16,7 +16,6 @@ namespace GimnasioIron.Controllers
             _context = context;
         }
 
-        
         public IActionResult MisPagos()
         {
             int? idUsuario = HttpContext.Session.GetInt32("UsuarioId");
@@ -38,16 +37,14 @@ namespace GimnasioIron.Controllers
             return View(pagos);
         }
 
-        
         [HttpGet]
         public IActionResult Abonar()
         {
             return View();
         }
 
-      
         [HttpPost]
-        public IActionResult Abonar(MetodoPago metodo, string? numeroTarjeta, string? cvv)
+        public IActionResult Abonar(string plan, MetodoPago metodo, string? numeroTarjeta, string? cvv)
         {
             int? idUsuario = HttpContext.Session.GetInt32("UsuarioId");
 
@@ -77,11 +74,30 @@ namespace GimnasioIron.Controllers
                 return RedirectToAction("Abonar");
             }
 
+            // Determinar monto según plan seleccionado
+            int monto;
+            switch (plan)
+            {
+                case "Premium":
+                    monto = 36000;
+                    break;
+                case "Plata":
+                    monto = 30000;
+                    break;
+                case "Basico":
+                    monto = 25000;
+                    break;
+                default:
+                    TempData["Mensaje"] = "Plan no válido.";
+                    TempData["TipoMensaje"] = "danger";
+                    return RedirectToAction("Abonar");
+            }
+
             var nuevoPago = new Pago
             {
                 UsuarioId = idUsuario.Value,
                 Fecha = hoy,
-                Monto = 35000,
+                Monto = monto,
                 Metodo = metodo,
                 Estado = EstadoPago.Pendiente,
                 NumeroTarjeta = metodo == MetodoPago.Tarjeta ? numeroTarjeta : null,
@@ -91,13 +107,20 @@ namespace GimnasioIron.Controllers
             _context.Pagos.Add(nuevoPago);
             _context.SaveChanges();
 
-            TempData["Mensaje"] = "Tu pago fue registrado como pendiente. El administrador lo aprobará manualmente.";
+            TempData["Mensaje"] = $"Tu pago fue registrado como pendiente para el plan {plan}.";
             TempData["TipoMensaje"] = "success";
             return RedirectToAction("MisPagos");
         }
     }
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
